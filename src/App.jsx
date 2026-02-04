@@ -13,6 +13,8 @@ export const App = () => {
   const [records, setRecords] = useState([]);
   const [error, setError] = useState("");
 
+  const totalTime = records.reduce((sum, record) => sum + record.time, 0);
+
   const handleClick = () => {
     if (content === "" || time === "" || Number(time) <= 0) {
       setError("入力されていない項目があります");
@@ -58,6 +60,13 @@ export const App = () => {
       </div>
 
       <div>{error}</div>
+
+      <div>
+        <p>
+          合計時間:
+          {totalTime}/1000(h)
+        </p>
+      </div>
 
       <div>
         {records.map((record) => (
