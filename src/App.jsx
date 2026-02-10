@@ -60,7 +60,7 @@ export const App = () => {
   if (isLoading) {
     return (
       <div>
-        <h1>学習記録一覧</h1>
+        <h1 data-testid="title">学習記録一覧</h1>
         <p>データ読み込み中...</p>
       </div>
     );
@@ -68,11 +68,12 @@ export const App = () => {
 
   return (
     <div>
-      <h1> 学習記録一覧だよーん</h1>
+      <h1 data-testid="title">学習記録一覧</h1>
 
       <div>
-        <label>学習内容</label>
+        <label htmlFor="content-input">学習内容</label>
         <input
+          id="content-input"
           type="text"
           value={content}
           onChange={(event) => setContent(event.target.value)}
@@ -80,8 +81,9 @@ export const App = () => {
       </div>
 
       <div>
-        <label>学習時間</label>
+        <label htmlFor="time-input">学習時間</label>
         <input
+          id="time-input"
           type="number"
           value={time}
           onChange={(event) => setTime(event.target.value)}
@@ -99,14 +101,14 @@ export const App = () => {
 
       <p>合計時間: {totalTime}/1000(h)</p>
 
-      <div>
+      <ul>
         {records.map((record) => (
-          <p key={record.id}>
+          <li key={record.id}>
             {record.title} {record.time}時間{" "}
             <button onClick={() => handleDelete(record.id)}>削除</button>
-          </p>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

@@ -3,8 +3,23 @@ name: CiCd
 on: push
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+
   build:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -24,7 +39,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build # buildジョブが完了してから実行
+    needs: build
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
