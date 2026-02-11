@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "my-study-app-3c25e"
-  }
+    "default": "typescript-mystudy"
+  },
+  "targets": {},
+  "etags": {}
 }
